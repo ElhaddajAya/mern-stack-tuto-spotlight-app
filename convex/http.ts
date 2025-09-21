@@ -5,6 +5,10 @@ import { httpAction } from "./_generated/server";
 
 const http = httpRouter();
 
+// 1- we need to make sure that the webhook event is coming from Clerk
+// 2- if so, we will listen for the "user.created" event
+// 3- we will save the user to the database
+
 http.route({
   path: "/clerk-webhook",
   method: "POST",
@@ -69,3 +73,5 @@ http.route({
     return new Response("Webhook received successfully", { status: 200 });
   }),
 });
+
+export default http;
